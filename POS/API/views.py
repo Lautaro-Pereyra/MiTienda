@@ -1,0 +1,22 @@
+from rest_framework import generics
+
+from .models import Categoria, Producto, Cliente
+from .serializers import CategoriaSerializer, ProductoSerializer, ClienteSerializer
+
+
+class CategoriaListView(generics.ListAPIView):
+    queryset = Categoria.objects.all()
+    serializer_class = CategoriaSerializer
+
+class ProductoListView(generics.ListAPIView):
+    queryset = Producto.objects.all()
+    serializer_class = ProductoSerializer
+
+class ClienteView(generics.ListCreateAPIView):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+
+class ClienteDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Cliente.objects.all()
+    lookup_url_kwarg = 'cliente_id'
+    serializer_class = ClienteSerializer
